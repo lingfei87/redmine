@@ -1,0 +1,16 @@
+Evaluation
+
+<div class="contextual">
+<%# if User.current.allowed_to?(:manage_issue_relations, @project) %>
+  <%= toggle_link l(:button_add), 'new-evaluation-form', {:focus => ''} %>
+<%# end %>
+</div>
+
+#<%#= form_for @relation, {
+ #                :as => :relation, :remote => true,
+  #               :url => evaluate_path(@issue),
+   #              :method => :post,
+    #             :html => {:id => 'new-evaluation-form', :style => 'display: none;'}
+     #          } do |f| %>
+<%#= render :partial => 'evaluate/form', :locals => {:f => f}%>
+<%# end %>
