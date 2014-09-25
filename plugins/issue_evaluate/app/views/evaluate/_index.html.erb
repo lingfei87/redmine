@@ -19,6 +19,8 @@ Evaluation
                  :method => :post,
                  :html => {:id => 'new-evaluation-form', :style => 'display: none;'}
                } do |f| %>
+<%#=f.text_field(:score, :id, class: 'score_id')%>   
+<%=f.text_field :score %>              
 <ul>
 	<li>score: <div id="star"></div></li>
 </ul>
@@ -29,7 +31,9 @@ Evaluation
 <script>
 	$(document).ready(function() {
 		$('#star').raty({
-			path: "/plugin_assets/issue_evaluate/images"
+			path: "/plugin_assets/issue_evaluate/images",
+			target: '#issue_evaluates_score',
 		});
+		alert($('#score_id').value);
 	});
 </script>
