@@ -1,5 +1,5 @@
 class EvaluateController < ApplicationController
-  unloadable
+  # unloadable
 
 
   def index
@@ -12,6 +12,13 @@ class EvaluateController < ApplicationController
 
   def create
     puts "3"
+    @evaluate = IssueEvaluates.new
+    score = params[:score]
+    # @a = params[:issue_evaluates]
+    @evaluate.score = score
+    @evaluate.save
+    
+    
   end
 
   def delete
