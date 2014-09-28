@@ -71,4 +71,4 @@ hr { border-top: medium none; height: 1px; margin-bottom: 16px; margin-top: 15px
 
 #score-target { float: left; margin-left: 5px }
 
-.score_id{display:none;}
+#EvaluateAdd{display:none;}

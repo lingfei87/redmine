@@ -2,31 +2,36 @@ Evaluation
 
 <%= javascript_include_tag "jquery.raty.js" , :plugin => 'issue_evaluate'%>
 <%= javascript_include_tag "jquery.raty.min.js" , :plugin => 'issue_evaluate'%>
-
-
+<%= stylesheet_link_tag "stylesheet.css" , :plugin => 'issue_evaluate'%>
 
 
 <div class="contextual">
-<%# if User.current.allowed_to?(:manage_issue_relations, @project) %>
-  <%= toggle_link l(:button_add), 'new-evaluation-form', {:focus => ''} %>
-<%# end %>
+	<%# if User.current.allowed_to?(:manage_issue_relations, @project) %>
+	  <%= toggle_link l(:button_add), 'new-evaluation-form', {:focus => ''} %>
+	<%# end %>
 </div>
 
-<%@evaluate = IssueEvaluates.new%>
-<%= form_for @evaluate, {
-                 :remote => true,
-                 :url => evaluate_issue_new_path(@issue),
-                 :method => :post,
-                 :html => {:id => 'new-evaluation-form', :style => 'display: none;'}
-               } do |f| %>
-<%#=f.text_field(:score, :id, class: 'score_id')%>   
-<%=f.hidden_field :score%>              
-<ul>
-	<li>score: <div id="star"></div></li>
-</ul>
-<p><%#= f.text_field :advice, :size => 80, :maxlength => 255, :required => true %></p>
-<%=f.submit%>
-<% end %>
+<div id="EvaluateAdd">
+	<ul>
+
+		<%@evaluate = IssueEvaluates.new%>
+		<%= form_for @evaluate, {
+					 :remote => true,
+					 :url => evaluate_issue_new_path(@issue),
+					 :method => :post,
+					 :html => {:id => 'new-evaluation-form', :style => 'display: none;'}
+					   } do |f| %>
+		<%#=f.text_field(:score, :id, class: 'score_id')%>   
+		<%=f.hidden_field :score%>              
+		
+		<li><div id="evaluatelabel">score:</div> <div id="star"></div></li>
+		<li><%=f.submit%></li>
+	
+	<p><%#= f.text_field :advice, :size => 80, :maxlength => 255, :required => true %></p>
+	
+	<% end %>
+	</ul>
+</div>
 
 <script>
 	$(document).ready(function() {
