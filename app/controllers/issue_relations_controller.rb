@@ -31,6 +31,7 @@ class IssueRelationsController < ApplicationController
   end
 
   def show
+    puts "issue_relation_show"
     raise Unauthorized unless @relation.visible?
 
     respond_to do |format|
@@ -40,6 +41,7 @@ class IssueRelationsController < ApplicationController
   end
 
   def create
+    puts "issue_relation_path"
     @relation = IssueRelation.new(params[:relation])
     @relation.issue_from = @issue
     if params[:relation] && m = params[:relation][:issue_to_id].to_s.strip.match(/^#?(\d+)$/)
@@ -49,11 +51,15 @@ class IssueRelationsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to issue_path(@issue) }
+      puts "a"
       format.js {
+        puts "b"
         @relations = @issue.reload.relations.select {|r| r.other_issue(@issue) && r.other_issue(@issue).visible? }
       }
       format.api {
+        puts "c"
         if saved
+          puts "d"
           render :action => 'show', :status => :created, :location => relation_url(@relation)
         else
           render_validation_errors(@relation)

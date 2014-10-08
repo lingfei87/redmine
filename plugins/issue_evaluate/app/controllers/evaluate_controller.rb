@@ -18,6 +18,15 @@ class EvaluateController < ApplicationController
     @evaluate.score = score
     @evaluate.save
     
+    respond_to do |format|
+      format.html { redirect_to issue_path(@issue) }
+      puts "aa"
+      format.js {
+        puts "bb"
+        @relations = @issue.reload.relations.select {|r| r.other_issue(@issue) && r.other_issue(@issue).visible? }
+      }
+    end
+    
     
   end
 

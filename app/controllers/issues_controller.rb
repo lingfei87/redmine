@@ -100,6 +100,7 @@ class IssuesController < ApplicationController
   end
 
   def show
+    puts "issue_show"
     @journals = @issue.journals.includes(:user, :details).reorder("#{Journal.table_name}.id ASC").all
     @journals.each_with_index {|j,i| j.indice = i+1}
     @journals.reject!(&:private_notes?) unless User.current.allowed_to?(:view_private_notes, @issue.project)

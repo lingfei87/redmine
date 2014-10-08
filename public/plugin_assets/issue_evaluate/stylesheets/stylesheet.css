@@ -1,6 +1,8 @@
 #EvaluateAdd ul{list-style:none;}
 	 
-#EvaluateAdd ul li{float:left; width:400px;}
+#EvaluateAdd ul li{float:left; width:600px;}
 
 #star{float:left; width:200px;}
 #evaluatelabel{float:left; width:50px;}
+
+#new-evaluation-form{width:600px;}
