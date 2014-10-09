@@ -223,6 +223,13 @@ ActiveRecord::Schema.define(:version => 20131005100610) do
   add_index "issue_categories", ["assigned_to_id"], :name => "index_issue_categories_on_assigned_to_id"
   add_index "issue_categories", ["project_id"], :name => "issue_categories_project_id"
 
+  create_table "issue_checklists", :force => true do |t|
+    t.boolean "is_done",  :default => false
+    t.string  "subject"
+    t.integer "position", :default => 1
+    t.integer "issue_id",                    :null => false
+  end
+
   create_table "issue_evaluates", :force => true do |t|
     t.integer "issue_id"
     t.integer "issue_status_id"

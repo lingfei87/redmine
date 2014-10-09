@@ -19,12 +19,10 @@ class EvaluateController < ApplicationController
     @evaluate.save
     
     respond_to do |format|
+      format.js
       format.html { redirect_to issue_path(@issue) }
       puts "aa"
-      format.js {
-        puts "bb"
-        @relations = @issue.reload.relations.select {|r| r.other_issue(@issue) && r.other_issue(@issue).visible? }
-      }
+       
     end
     
     

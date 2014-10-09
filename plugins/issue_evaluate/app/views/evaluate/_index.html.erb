@@ -5,6 +5,11 @@ Evaluation
 <%= stylesheet_link_tag "stylesheet.css" , :plugin => 'issue_evaluate'%>
 
 <div id="IssueEvaluate">
+	<% if @evaluate.present? 
+	puts @evaluate.id%>
+	qqqqqqqqqqqqqqqqq
+	<%end%>
+	
 	<div class="contextual">
 		<%# if User.current.allowed_to?(:manage_issue_relations, @project) %>
 		  <%= toggle_link l(:button_add), 'new-evaluation-form', {:focus => ''} %>
