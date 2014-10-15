@@ -7,7 +7,7 @@ Evaluation
 <div id="IssueEvaluate">
 	<% if @evaluate.present? 
 	puts @evaluate.id%>
-	qqqqqqqqqqqqqqqqq
+	<p>qqqqqqqqqqqqqqqqq</p>
 	<%end%>
 	
 	<div class="contextual">
@@ -24,6 +24,7 @@ Evaluation
 						 :remote => true,
 						 :url => evaluate_issue_new_path(@issue),
 						 :method => :post,
+						 :update => 'issue-evaluate',
 						 :html => {:id => 'new-evaluation-form', :style => 'display: none;'}
 						   } do |f| %>
 			<%#=f.text_field(:score, :id, class: 'score_id')%>   

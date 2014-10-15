@@ -121,7 +121,9 @@ end %>
 </div>
 <% end %>
 
+<div id = 'issue-evaluate'>
 <%= call_hook(:view_issues_show_history_bottom, :issue => @issue) %>
+</div>
 
 <div style="clear: both;"></div>
 <%= render :partial => 'action_menu' %>

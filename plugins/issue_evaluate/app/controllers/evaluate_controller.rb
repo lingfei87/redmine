@@ -20,10 +20,12 @@ class EvaluateController < ApplicationController
     
     respond_to do |format|
       format.js
-      format.html { redirect_to issue_path(@issue) }
+      # format.html { redirect_to issue_path(@issue) }
+      # format.html { render partial: '_index' }
       puts "aa"
        
     end
+    # render :partial => '_form', :content_type => 'text/html'
     
     
   end

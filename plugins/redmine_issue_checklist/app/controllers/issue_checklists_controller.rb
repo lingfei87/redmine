@@ -4,6 +4,7 @@ class IssueChecklistsController < ApplicationController
   before_filter :find_checklist_item
   
   def done
+    puts "done_controller"
     (render_403; return false) unless User.current.allowed_to?(:done_checklists, @checklist_item.issue.project)
 
     old_checklist_item = @checklist_item.dup
