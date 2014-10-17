@@ -1,0 +1,35 @@
+<%= javascript_include_tag 'ajax_counters.js', :plugin => :ajax_counters %>
+<%= stylesheet_link_tag 'ajax_counters.css', :plugin => :ajax_counters %>
+
+<%
+  counters_info = {}
+  # Rails.logger.debug "\v\v session = #{session.inspect}"
+
+  # For reduce session data length:
+  # c - counter, t - time, p - refresh period
+  cur_time = Time.now
+  session.each do |k,v|
+    if v.is_a?(Hash) && v.has_key?(:c) && v.has_key?(:t) && v.has_key?(:p)
+      expired = false
+      if v[:t]+v[:p].seconds < cur_time
+        expired = true
+        session[k] = nil # drop data in session storage to free the space
+      end
+      counters_info[k] = { counter: v[:c], expired: expired, last_refresh: v[:t]}
+    end
+  end
+
+%>
+<script type="text/javascript">
+
+  RMPlus.AC = (function(my){
+    var my = my || {};
+
+    my.ajax_stored_counters = <%= counters_info.to_json.html_safe %>;
+
+    my.refresh_counters_label = '<%= l(:label_refresh_ajax_counters) %>';
+
+    return my;
+  })(RMPlus.AC || {});
+
+</script>
