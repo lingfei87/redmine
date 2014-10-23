@@ -2,8 +2,10 @@ Evaluation
 
 <%= javascript_include_tag "issue_evaluate.js" , :plugin => 'issue_evaluate'%>
 <%= javascript_include_tag "jquery.raty.js" , :plugin => 'issue_evaluate'%>
+<%= javascript_include_tag "jquery.min.js" , :plugin => 'issue_evaluate'%>
 <%= javascript_include_tag "jquery.raty.min.js" , :plugin => 'issue_evaluate'%>
 <%= stylesheet_link_tag "stylesheet.css" , :plugin => 'issue_evaluate'%>
+
 
 <div id="IssueEvaluate">
 	<% if @evaluate.present? 
@@ -16,13 +18,14 @@ Evaluation
 		  <%= toggle_link l(:button_add), 'new-evaluation-form', {:focus => ''} %>
 		<!-- <%# end %> -->
 	</div>
-	<input type="button" value="aaa" onclick="AddSuccess()" />
+	<!-- <input id="adds" type="button" value="aaa" onclick="AddSuccess()" /> -->
+	
 	<div id="EvaluateAdd">
 		<ul>
 	
 			<%@evaluate = IssueEvaluates.new%>
 			<%= form_for @evaluate, {
-						 :remote => true,
+						 # :remote => true,
 						 :url => evaluate_issue_new_path(@evaluate),
 						 # :method => :post,
 						 # :'data-update-target' => 'IssueEvaluate',
@@ -34,12 +37,14 @@ Evaluation
 			<%=f.hidden_field :score%>              
 			
 			<li><div id="evaluatelabel">score:</div> <div id="star"></div></li>
-			<li><%=f.submit%></li>
+			<li><%=f.button 'Submit', id:'Evaluate-Submit'%></li>
 		
 		<% end %>
 		</ul>
 	</div>
 </div>
-
+<input id="adds" type="button" value="aaa" />
+<%= javascript_tag "observeIssueChecklistField('adds');" %>
+<%= javascript_tag "createIssueChecklist();" %>
 <%= link_to "test", { :action => 'testajax', :controller => 'evaluate' }, :remote => true %>
 <div id='testdiv'></div>
