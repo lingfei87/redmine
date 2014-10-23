@@ -76,7 +76,9 @@ Redmine.IssueChecklist = Class.create({
 });
 
 function observeIssueChecklistField(element, input, add_button) {
+	alert("1");
 	issueChecklist = new Redmine.IssueChecklist(element, input, add_button);
+	alert("2");
 }
 
 function createIssueChecklist(checkList) {

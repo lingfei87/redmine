@@ -85,7 +85,9 @@ Redmine.IssueChecklist = jQuery.klass({
 });
 
 function observeIssueChecklistField(element, input, add_button) {
+	alert("111");
 	issueChecklist = new Redmine.IssueChecklist(element, input, add_button);
+	alert("222");
 }
 
 function createIssueChecklist(checkList) {
