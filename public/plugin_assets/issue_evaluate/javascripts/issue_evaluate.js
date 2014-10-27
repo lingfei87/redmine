@@ -10,16 +10,24 @@ $(document).ready(function() {
 	});
 });
 
-var Redmines = Redmines || {};
+if (jQuery) {
+alert('Jquery is loaded')
+} else {
+alert ('Jquery is not loaded')
+}
 
-Redmines.IssueChecklist = jQuery.klass({
+
+var Issues = Issues || {};
+
+Issues.IssueChecklist = jQuery.klass({
 	init: function(button) {
 		this.button  = $('#'+button);
-		this.button.click($.proxy(this.readChecklist, this));
+		// this.button.click($.proxy(this.readChecklist, this));
 		// Event.observe(this.button, 'click', this.readChecklist.bindAsEventListener(this));
 	},
 
 	readChecklist: function(event) {
+		alert(this.button);
 		event.preventDefault();
 	},
 	
@@ -33,10 +41,10 @@ Redmines.IssueChecklist = jQuery.klass({
 
 function observeIssueChecklistField(add_button) {
 	alert("555");
-	issueChecklist = new Redmines.IssueChecklist(add_button);
+	issueChecklist = new Issues.IssueChecklist(add_button);
 	alert("666");
 }
 
-// function createIssueChecklist() {
-	// issueChecklist.addChecklist(); 
-// }
+function createIssueChecklist() {
+	issueChecklist.addChecklist(); 
+}
