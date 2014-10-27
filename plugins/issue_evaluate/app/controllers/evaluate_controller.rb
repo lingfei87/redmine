@@ -24,12 +24,13 @@ class EvaluateController < ApplicationController
 
   def create
     puts "3"
+    puts @issue.IssueEvaluate.score
     @evaluate = IssueEvaluates.new
     score = params[:score]
-    # @a = params[:issue_evaluates]
+
     @evaluate.score = score
     @evaluate.save
-    @testdata = "ajaxy data"
+
     # respond_to do |format|
       # format.js
       # # format.html { redirect_to issue_path(@issue) }

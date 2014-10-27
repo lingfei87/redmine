@@ -230,13 +230,6 @@ ActiveRecord::Schema.define(:version => 20131005100610) do
     t.integer "issue_id",                    :null => false
   end
 
-  create_table "issue_evaluates", :force => true do |t|
-    t.integer "issue_id"
-    t.integer "issue_status_id"
-    t.string  "score"
-    t.text    "advice"
-  end
-
   create_table "issue_relations", :force => true do |t|
     t.integer "issue_from_id",                 :null => false
     t.integer "issue_to_id",                   :null => false

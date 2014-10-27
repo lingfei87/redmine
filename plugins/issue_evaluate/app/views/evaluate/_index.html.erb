@@ -2,7 +2,6 @@ Evaluation
 
 <%= javascript_include_tag "jquery.klass.js" , :plugin => 'issue_evaluate'%>
 <%= javascript_include_tag "jquery.raty.js" , :plugin => 'issue_evaluate'%>
-<!-- <%= javascript_include_tag "jquery.min.js" , :plugin => 'issue_evaluate'%> -->
 <%= javascript_include_tag "jquery.raty.min.js" , :plugin => 'issue_evaluate'%>
 <%= stylesheet_link_tag "stylesheet.css" , :plugin => 'issue_evaluate'%>
 <%= javascript_include_tag "issue_evaluate.js" , :plugin => 'issue_evaluate'%>
@@ -19,33 +18,26 @@ Evaluation
 		  <%= toggle_link l(:button_add), 'new-evaluation-form', {:focus => ''} %>
 		<!-- <%# end %> -->
 	</div>
-	<!-- <input id="adds" type="button" value="aaa" onclick="AddSuccess()" /> -->
-	
+
 	<div id="EvaluateAdd">
 		<ul>
 	
 			<%@evaluate = IssueEvaluates.new%>
 			<%= form_for @evaluate, {
-						 # :remote => true,
-						 :url => evaluate_issue_new_path(@evaluate),
-						 # :method => :post,
-						 # :'data-update-target' => 'IssueEvaluate',
-						 # :update => 'IssueEvaluate',
+						 :remote => true,
+						 :url => evaluate_issue_new_path(@issue),
 						 :html => {:id => 'new-evaluation-form', :style => 'display: none;'},
-						 # :success => "AddSuccess()"
 						   } do |f| %>
 			<%#=f.text_field(:score, :id, class: 'score_id')%>   
 			<%=f.hidden_field :score%>              
 			
 			<li><div id="evaluatelabel">score:</div> <div id="star"></div></li>
-			<li><%=f.button 'Submit', id:'Evaluate-Submit'%></li>
+			<li><%=f.submit 'Submit', id:'Evaluate-Submit'%></li>
 		
 		<% end %>
 		</ul>
 	</div>
 </div>
-<input id="addss" type="button" value="aaa" />
-<%= javascript_tag "observeIssueChecklistField('addss');" %>
+
+<%= javascript_tag "observeIssueChecklistField('Evaluate-Submit');" %>
 <%= javascript_tag "createIssueChecklist();" %>
-<%= link_to "test", { :action => 'testajax', :controller => 'evaluate' }, :remote => true %>
-<div id='testdiv'></div>

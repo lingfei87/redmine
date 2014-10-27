@@ -10,13 +10,6 @@ $(document).ready(function() {
 	});
 });
 
-if (jQuery) {
-alert('Jquery is loaded')
-} else {
-alert ('Jquery is not loaded')
-}
-
-
 var Issues = Issues || {};
 
 Issues.IssueChecklist = jQuery.klass({
@@ -33,16 +26,13 @@ Issues.IssueChecklist = jQuery.klass({
 	
 	addChecklist: function() {
 		this.button.click($.proxy(function(){
-			alert("44444444");
-			// Event.stop(event);
+			$('#new-evaluation-form').hide();
 		}, this));
 	},
 });	
 
 function observeIssueChecklistField(add_button) {
-	alert("555");
 	issueChecklist = new Issues.IssueChecklist(add_button);
-	alert("666");
 }
 
 function createIssueChecklist() {
