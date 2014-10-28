@@ -24,13 +24,16 @@ class EvaluateController < ApplicationController
 
   def create
     puts "3"
-    puts @issue.IssueEvaluate.score
+
     @evaluate = IssueEvaluates.new
     score = params[:score]
+    issue_id = params[:issue_evaluates][:issue_id]
 
     @evaluate.score = score
+    @evaluate.issue_id = issue_id
     @evaluate.save
-
+puts "5"
+puts @evaluate.issue.created_on
     # respond_to do |format|
       # format.js
       # # format.html { redirect_to issue_path(@issue) }

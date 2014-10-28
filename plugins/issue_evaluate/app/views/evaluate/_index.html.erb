@@ -1,5 +1,6 @@
 Evaluation
-
+<%puts "aaaaaaaaaaa"
+puts @issue.id%>
 <%= javascript_include_tag "jquery.klass.js" , :plugin => 'issue_evaluate'%>
 <%= javascript_include_tag "jquery.raty.js" , :plugin => 'issue_evaluate'%>
 <%= javascript_include_tag "jquery.raty.min.js" , :plugin => 'issue_evaluate'%>
@@ -25,11 +26,14 @@ Evaluation
 			<%@evaluate = IssueEvaluates.new%>
 			<%= form_for @evaluate, {
 						 :remote => true,
-						 :url => evaluate_issue_new_path(@issue),
+						 :url => evaluate_issue_new_path(),
 						 :html => {:id => 'new-evaluation-form', :style => 'display: none;'},
 						   } do |f| %>
-			<%#=f.text_field(:score, :id, class: 'score_id')%>   
-			<%=f.hidden_field :score%>              
+			<%#=f.text_field(:score, :id, class: 'score_id')%>  
+			<%=f.hidden_field :issue_id, :value => @issue.id%> 
+			<%=f.hidden_field :score%>   
+			           
+			  
 			
 			<li><div id="evaluatelabel">score:</div> <div id="star"></div></li>
 			<li><%=f.submit 'Submit', id:'Evaluate-Submit'%></li>
