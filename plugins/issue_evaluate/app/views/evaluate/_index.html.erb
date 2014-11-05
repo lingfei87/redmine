@@ -1,6 +1,5 @@
 Evaluation
-<%puts "aaaaaaaaaaa"
-puts @issue.id%>
+
 <%= javascript_include_tag "jquery.klass.js" , :plugin => 'issue_evaluate'%>
 <%= javascript_include_tag "jquery.raty.js" , :plugin => 'issue_evaluate'%>
 <%= javascript_include_tag "jquery.raty.min.js" , :plugin => 'issue_evaluate'%>
@@ -9,10 +8,17 @@ puts @issue.id%>
 
 
 <div id="IssueEvaluate">
-	<% if @evaluate.present? 
-	puts @evaluate.id%>
-	<p>qqqqqqqqqqqqqqqqq</p>
+	<input type = 'hidden' id='IssueEvaluateSize' value = '<%=@issue.evaluates.length%>'>
+	<%for i in 0...@issue.evaluates.length do
+	puts @issue.evaluates[i].id%>
+		<div id="IssueEvaluate<%=i%>">
+			<input type = 'hidden' id='IssueEvaluateScore<%=i%>' value = '<%=@issue.evaluates[i].score%>'>
+		</div>
 	<%end%>
+	
+		<div id="IssueEvaluatess" >
+			
+		</div>
 	
 	<div class="contextual">
 		<!-- <%# if User.current.allowed_to?(:manage_issue_relations, @project) %> -->
@@ -22,23 +28,19 @@ puts @issue.id%>
 
 	<div id="EvaluateAdd">
 		<ul>
-	
 			<%@evaluate = IssueEvaluates.new%>
 			<%= form_for @evaluate, {
 						 :remote => true,
 						 :url => evaluate_issue_new_path(),
 						 :html => {:id => 'new-evaluation-form', :style => 'display: none;'},
 						   } do |f| %>
-			<%#=f.text_field(:score, :id, class: 'score_id')%>  
-			<%=f.hidden_field :issue_id, :value => @issue.id%> 
-			<%=f.hidden_field :score%>   
-			           
-			  
-			
-			<li><div id="evaluatelabel">score:</div> <div id="star"></div></li>
-			<li><%=f.submit 'Submit', id:'Evaluate-Submit'%></li>
-		
-		<% end %>
+				<%#=f.text_field(:score, :id, class: 'score_id')%>  
+				<%=f.hidden_field :issue_id, :value => @issue.id%> 
+				<%=f.hidden_field :score%>   
+				           
+				<li><div id="evaluatelabel">score:</div> <div id="star"></div></li>
+				<li><%=f.submit 'Submit', id:'Evaluate-Submit'%></li>
+			<% end %>
 		</ul>
 	</div>
 </div>
