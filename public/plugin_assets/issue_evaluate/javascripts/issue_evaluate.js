@@ -1,7 +1,10 @@
 $(document).ready(function() {
 	$('#star').raty({
 		path: "/plugin_assets/issue_evaluate/images",
-		targetScore: '#issue_evaluates_score',
+		// targetScore: '#issue_evaluates_score',
+		target:     '#issue_evaluates_score',
+		targetKeep: true,
+        targetType: 'number',
 	});
 
 });
@@ -19,6 +22,14 @@ function ListIssueEvaluates (){
 	
 window.onload = ListIssueEvaluates;
 
+function NewIssueEvaluate(score) {
+	$('#NewIssueEvaluate').raty({
+		path: "/plugin_assets/issue_evaluate/images",
+		readOnly:  true,
+		score:     score,
+	});
+}
+
 var Issues = Issues || {};
 
 Issues.IssueChecklist = jQuery.klass({
@@ -26,7 +37,6 @@ Issues.IssueChecklist = jQuery.klass({
 		this.button  = $('#'+button);
 		// this.button.click($.proxy(this.readChecklist, this));
 		// Event.observe(this.button, 'click', this.readChecklist.bindAsEventListener(this));
-		
 	},
 
 	readChecklist: function(event) {
@@ -36,7 +46,8 @@ Issues.IssueChecklist = jQuery.klass({
 	
 	addChecklist: function() {
 		this.button.click($.proxy(function(){
-			alert($('#IssueEvaluateSize').val());
+			var score = $('#issue_evaluates_score').val();
+			NewIssueEvaluate(score);
 			$('#new-evaluation-form').hide();
 		}, this));
 	},
