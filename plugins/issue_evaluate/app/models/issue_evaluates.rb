@@ -5,4 +5,5 @@ class IssueEvaluates < ActiveRecord::Base
   include Redmine::I18n
   
   belongs_to :issue
+  belongs_to :user
 end

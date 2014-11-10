@@ -9,16 +9,23 @@
 
 <div id="IssueEvaluate">
 	<input type = 'hidden' id='IssueEvaluateSize' value = '<%=@issue.evaluates.length%>'>
+	<input type = 'hidden' id='currentUser' value='<%=User.current.id%>,<%=User.current%>'>
+
 	<%if @issue.evaluates.length >0 %>
-		<div id = "EvaluateNotice">
-			Add by 
-		</div>
+
+		<% for i in 0...@issue.evaluates.length do %>
+			<div id = "EvaluateNotice">
+				<%= authoring @issue.evaluates[i].created_on, @issue.evaluates[i].user, :label => :label_updated_time_by %>
+			</div>
+			
+			<div id="IssueEvaluate<%=i%>">
+				<input type = 'hidden' id='IssueEvaluateScore<%=i%>' value = '<%=@issue.evaluates[i].score%>'>
+			</div>
+		<% end %>
 	<%end%>
-	<% for i in 0...@issue.evaluates.length do %>
-		<div id="IssueEvaluate<%=i%>">
-			<input type = 'hidden' id='IssueEvaluateScore<%=i%>' value = '<%=@issue.evaluates[i].score%>'>
-		</div>
-	<% end %>
+	
+	<div id = "NewEvaluateNotice">
+	</div>
 	
 	<div id="NewIssueEvaluate" ></div>
 	

@@ -24,24 +24,27 @@ class EvaluateController < ApplicationController
 
   def create
     puts "3"
-
+    
+    @currentUser = User.current
     @evaluate = IssueEvaluates.new
     score = params[:score]
     issue_id = params[:issue_evaluates][:issue_id]
 
     @evaluate.score = score
     @evaluate.issue_id = issue_id
+    @evaluate.user_id = User.current.id
     @evaluate.save
 puts "5"
 puts @evaluate.issue.created_on
+
     # respond_to do |format|
       # format.js
-      # # format.html { redirect_to issue_path(@issue) }
-      # # format.html { render :template => '_form' }
+      # format.html { redirect_to issue_path(@issue) }
+      # format.html { render :template => '_index' }
       # puts "aa"
-#        
+       
     # end
-    # render :partial => 'form', :content_type => 'text/html'
+    # render :partial => 'index', :content_type => 'text/html'
     
     
   end
