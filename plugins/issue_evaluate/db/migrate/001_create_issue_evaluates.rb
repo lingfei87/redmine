@@ -5,6 +5,8 @@ class CreateIssueEvaluates < ActiveRecord::Migration
       t.string :score
       t.text :advice
       t.references :issue, :null => false
+      t.references :user, :null => false
+      t.datetime :created_on
     end
   end
 end
