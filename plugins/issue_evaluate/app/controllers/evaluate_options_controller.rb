@@ -1,4 +1,4 @@
-class EvaluateOptionController < ApplicationController
+class EvaluateOptionsController < ApplicationController
   unloadable
 
 
@@ -17,30 +17,44 @@ class EvaluateOptionController < ApplicationController
 
 
   def new
-    @evaluate_options = EvaluateOptions.new
+    @evaluate_option = EvaluateOptions.new
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @evaluate_options }
+      format.json { render json: @evaluate_option }
+    end
+  end
+  
+  def show
+    @evaluate_option = EvaluateOptions.find(params[:id])
+    # @project = Project.find(params[:project_id])
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @evaluate_option }
     end
   end
   
   def edit
-    @post = Post.find(params[:id])
+    @evaluate_option = EvaluateOptions.find(params[:id])
   end
 
   # POST /posts
   # POST /posts.json
   def create
-    @post = Post.new(params[:post])
+    puts "aaaaaaaaaaaaa"
+    puts params[:evaluate_option]
+    @evaluate_option = EvaluateOptions.new(params[:evaluate_option])
 
     respond_to do |format|
-      if @post.save
-        format.html { redirect_to @post, notice: 'Post was successfully created.' }
-        format.json { render json: @post, status: :created, location: @post }
+      puts "bbbbbbbbbbbbb"
+      if @evaluate_option.save
+        puts "ccccccccccccccc"
+        format.html { redirect_to @evaluate_option, notice: 'Evaluate Option was successfully created.' }
+        format.json { render json: @evaluate_option, status: :created, location: @post }
       else
+        puts "ddddddddddddd"
         format.html { render action: "new" }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
+        format.json { render json: @evaluate_option.errors, status: :unprocessable_entity }
       end
     end
   end

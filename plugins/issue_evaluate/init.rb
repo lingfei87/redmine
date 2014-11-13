@@ -13,6 +13,6 @@ Redmine::Plugin.register :issue_evaluate do
   url 'http://example.com/path/to/plugin'
   author_url 'http://example.com/about'
   
-  permission :evaluate_option, { :evaluate_option => [:index] }, :public => true
-  menu :project_menu, :evaluate_option, { :controller => 'evaluate_option', :action => 'index' }, :caption => 'Evaluate Option', :after => :activity, :param => :project_id
+  permission :evaluate_options, { :evaluate_options => [:index] }, :public => true
+  menu :project_menu, :evaluate_options, { :controller => 'evaluate_options', :action => 'index' }, :caption => 'Evaluate Options', :after => :activity, :param => :project_id
 end
