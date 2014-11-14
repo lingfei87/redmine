@@ -10,6 +10,6 @@ get 'evaluate/:id/testajax', :to => 'evaluate#testajax'
 # get 'evaluate_options', :to => 'evaluate_options#index'
 # match 'evaluate_options/new', :to => 'evaluate_options#new'
 # match 'evaluate_options/create', :to => 'evaluate_options#create', :via => [:get, :post] , :as =>'evaluate_options_path'
-# get 'evaluate_options/:id', :to => 'evaluate_options#show'
+# get 'evaluate_options/:id', :to => 'evaluate_options#show', :as => 'evaluate_option'
 
 resources :evaluate_options

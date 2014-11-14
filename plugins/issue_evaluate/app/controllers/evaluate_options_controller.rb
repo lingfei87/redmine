@@ -2,21 +2,24 @@ class EvaluateOptionsController < ApplicationController
   unloadable
 
 
-
+  
   def index
-    @project = Project.find(params[:project_id])
+    @project_id = params[:project_id]
+    @project = Project.find(@project_id)
     # @polls = Poll.find(:all) # @project.polls
     
     @evaluate_options = EvaluateOptions.all
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html 
       format.json { render json: @evaluate_options }
     end
   end
 
 
   def new
+    @project_id = params[:project_id]
+    @project = Project.find(@project_id)
     @evaluate_option = EvaluateOptions.new
 
     respond_to do |format|
@@ -26,6 +29,8 @@ class EvaluateOptionsController < ApplicationController
   end
   
   def show
+    @project_id = params[:project_id]
+    @project = Project.find(@project_id)
     @evaluate_option = EvaluateOptions.find(params[:id])
     # @project = Project.find(params[:project_id])
     respond_to do |format|
@@ -42,8 +47,8 @@ class EvaluateOptionsController < ApplicationController
   # POST /posts.json
   def create
     puts "aaaaaaaaaaaaa"
-    puts params[:evaluate_option]
-    @evaluate_option = EvaluateOptions.new(params[:evaluate_option])
+
+    @evaluate_option = EvaluateOptions.new(params[:evaluate_options])
 
     respond_to do |format|
       puts "bbbbbbbbbbbbb"
@@ -78,11 +83,12 @@ class EvaluateOptionsController < ApplicationController
   # DELETE /posts/1
   # DELETE /posts/1.json
   def destroy
-    @post = Post.find(params[:id])
-    @post.destroy
+    @project = Project.find($projectId)
+    @evaluate_option = EvaluateOptions.find(params[:id])
+    @evaluate_option.destroy
 
     respond_to do |format|
-      format.html { redirect_to posts_url }
+      format.html { redirect_to evaluate_options_url }
       format.json { head :no_content }
     end
   end

@@ -10,3 +10,10 @@
 #EvaluateNotice{margin-bottom: 5px; margin-top:15px;padding-bottom: 5px; border-bottom:1px dotted #BBBBBB;}
 
 .EvaluateNotice{margin-bottom: 5px; margin-top:15px;padding-bottom: 5px; border-bottom:1px dotted #BBBBBB;}
+
+#EvaluateOptionsIndex {width:300px;border:1px dotted #BBBBBB;border-right:0px;}
+#EvaluateOptionsIndex th{width:30%;border-right:1px dotted #BBBBBB;}
+#EvaluateOptionsIndex td{width:30%; text-align: center;border-top:1px dotted #BBBBBB;border-right:1px dotted #BBBBBB;}
+
+#EvaluateOptionsNew {width:300px;}
+#EvaluateOptionsNew td{width:30%; text-align: center;}

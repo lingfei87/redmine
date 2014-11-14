@@ -1,3 +1,4 @@
+<table id="EvaluateOptionsNew">
 <%= form_for (@evaluate_option), { :url => evaluate_options_path()} do |f| %>
   <% if @evaluate_option.errors.any? %>
     <div id="error_explanation">
@@ -11,11 +12,13 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="actions">
-    <%= f.submit 'Create'%>
-  </div>
+  <tr>
+    <td><b><%= f.label :name %>:</b></td>
+    <td><%= f.text_field :name %></td>
+    <td><input type="hidden" id="project_id" name="project_id" value='<%=@project_id%>'></td>
+  </tr>
+  <tr>
+    <td><%= f.submit 'Ok'%></td>
+  </tr>
 <% end %> 
+</table>
