@@ -46,8 +46,18 @@
 
 				<%=f.hidden_field :issue_id, :value => @issue.id%> 
 				<%=f.hidden_field :score%>   
-				           
+				          
 				<li><div id="evaluatelabel"><b>score:</b></div> <div id="star"></div></li>
+				<li>
+					<table>
+						<tr><td><b>option:</b></td>
+							<%@allOptions = EvaluateOptions.find(:all)
+							for all in @allOptions%> 
+								<td><input type="checkbox" name="EvaluateOptions" value="<%=all.name%>"><%=all.name%></td>
+							<%end%>
+						</tr>
+					</table>
+				</li>
 				<li>&nbsp;</li>
 				<li><%=f.submit 'OK', id:'Evaluate-Submit'%></li>
 			<% end %>
