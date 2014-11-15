@@ -53,7 +53,7 @@
 						<tr><td><b>option:</b></td>
 							<%@allOptions = EvaluateOptions.find(:all)
 							for all in @allOptions%> 
-								<td><input type="checkbox" name="EvaluateOptions" value="<%=all.name%>"><%=all.name%></td>
+								<td><input type="checkbox" name="EvaluateOptions[]" value="<%=all.id%>"><%=all.name%></td>
 							<%end%>
 						</tr>
 					</table>
