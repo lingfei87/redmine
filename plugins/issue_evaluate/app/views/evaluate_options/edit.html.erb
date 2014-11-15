@@ -1,6 +1,5 @@
 <h2>EvaluateOptionController#edit</h2>
 
-<%= render 'form' %>
+<%= render :partial => 'form', :locals=>{ :project_id => @project_id, :tag => "1"} %>
 
-<%= link_to 'Show', @evaluate_option %> |
-<%#= link_to 'Back', evaluate_options_path %>
+<%= link_to 'Back', evaluate_options_path(:project_id => @project_id) %>

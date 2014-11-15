@@ -1,5 +1,6 @@
 <h2>New Evaluate Options</h2>
 <%= stylesheet_link_tag "stylesheet.css" , :plugin => 'issue_evaluate'%>
-<%= render 'form' %>
 
-<%#= link_to 'Back', evaluate_option_path %>
+<%= render :partial => 'form', :locals=>{ :project_id => @project_id, :tag =>"0"}%>
+
+<%= link_to 'Back', evaluate_options_path(:project_id => @project_id) %>

@@ -79,3 +79,4 @@ function observeIssueChecklistField(add_button) {
 function createIssueChecklist() {
 	issueChecklist.addChecklist(); 
 }
+

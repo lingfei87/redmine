@@ -15,13 +15,12 @@
 	  <tr>
 	  	<td><%= evaluate_option.id %></td>
 	    <td><%= evaluate_option.name %></td>
-	    <td><%= link_to 'Edit', edit_evaluate_option_path(evaluate_option) %></td>
-	    <td><%= link_to 'Destroy', evaluate_option, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+	    <td><%= link_to 'Edit', edit_evaluate_option_path(:id =>evaluate_option.id ,:project_id => @project_id) %></td>
+	    <td><%= link_to 'Destroy', evaluate_option_path(:id =>evaluate_option.id ,:project_id => @project_id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
 	  </tr>
 	<% end %>
 <% end %>
 </table>
 
 <br />
-<%puts @project_id%>
 <%= link_to 'New', new_evaluate_option_path(:project_id => @project_id) %>

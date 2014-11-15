@@ -1,5 +1,8 @@
 <table id="EvaluateOptionsNew">
-<%= form_for (@evaluate_option), { :url => evaluate_options_path()} do |f| %>
+<!-- <%#= form_for (@evaluate_option), { :url => evaluate_options_path(:tag => tag)} do |f| %> -->
+<%if tag == "0"%>
+<%= form_for (@evaluate_option), { :url => {:action => :create}} do |f| %>
+
   <% if @evaluate_option.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@evaluate_option.errors.count, "error") %> prohibited this post from being saved:</h2>
@@ -15,10 +18,34 @@
   <tr>
     <td><b><%= f.label :name %>:</b></td>
     <td><%= f.text_field :name %></td>
-    <td><input type="hidden" id="project_id" name="project_id" value='<%=@project_id%>'></td>
+    <td><input type="hidden" id="project_ids" name="project_ids" value="<%=project_id%>"</td>
   </tr>
   <tr>
     <td><%= f.submit 'Ok'%></td>
   </tr>
 <% end %> 
+<%else%>
+<%= form_for (@evaluate_option), { :url => {:action => :update, :id => @evaluate_option.id}} do |f| %>
+  <% if @evaluate_option.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@evaluate_option.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+      <% @evaluate_option.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <tr>
+    <td><b><%= f.label :name %>:</b></td>
+    <td><%= f.text_field :name %></td>
+    <td><input type="hidden" id="project_ids" name="project_ids" value="<%=project_id%>"</td>
+  </tr>
+  <tr>
+    <td><%= f.submit 'Ok'%></td>
+  </tr>
+  <% end %>
+<% end %>
 </table>
