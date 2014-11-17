@@ -30,6 +30,50 @@ function NewIssueEvaluate(score) {
 	});
 }
 
+function AddScore(){
+	var score = $('#issue_evaluates_score').val();
+	var user = $('#currentUser').val();
+	$('#NewEvaluateNotice').addClass('EvaluateNotice');
+	
+	var a = document.createElement('a');
+	var linkText = document.createTextNode(user.split(",")[1]);
+	a.appendChild(linkText);
+	a.href = "/users/" + user.split(",")[0] ;
+	
+	$('#NewEvaluateNotice').append("Updated by "); 
+	$('#NewEvaluateNotice').append(a);
+	
+	var a2 = document.createElement('a');
+	var linkText2 = document.createTextNode(" less than a minute");
+	a2.appendChild(linkText2);
+	a2.href = "/projects/" ;
+	
+	$('#NewEvaluateNotice').append(a2);
+	$('#NewEvaluateNotice').append(" ago"); 
+	
+	NewIssueEvaluate(score);
+	$('#new-evaluation-form').hide();
+}
+
+function AddEvaluateOptions(){
+
+	$("input[name='EvaluateOptions[]']:checked").each(function(){ 
+
+		var input = document.createElement("input");
+		$(input).attr("type", "checkbox");
+		$(input).attr("name", "SelectedEvaluateOptions[]");
+		$(input).attr("value", "");
+		$(input).attr("checked", "true");
+		$(input).attr("disabled","true");
+		
+    	$('#NewIssueEvaluateOptions').append(input);
+        var text = document.createTextNode($(this).parent().text());
+        $('#NewIssueEvaluateOptions').append(text); 
+    }); 
+
+	$('#new-evaluation-form').hide();
+}
+
 var Issues = Issues || {};
 
 Issues.IssueChecklist = jQuery.klass({
@@ -46,28 +90,8 @@ Issues.IssueChecklist = jQuery.klass({
 	
 	addChecklist: function() {
 		this.button.click($.proxy(function(){
-			var score = $('#issue_evaluates_score').val();
-			var user = $('#currentUser').val();
-			$('#NewEvaluateNotice').addClass('EvaluateNotice');
-			
-			var a = document.createElement('a');
-			var linkText = document.createTextNode(user.split(",")[1]);
-			a.appendChild(linkText);
-			a.href = "/users/" + user.split(",")[0] ;
-			
-			$('#NewEvaluateNotice').append("Updated by "); 
-			$('#NewEvaluateNotice').append(a);
-			
-			var a2 = document.createElement('a');
-			var linkText2 = document.createTextNode(" less than a minute");
-			a2.appendChild(linkText2);
-			a2.href = "/projects/" ;
-			
-			$('#NewEvaluateNotice').append(a2);
-			$('#NewEvaluateNotice').append(" ago"); 
-			
-			NewIssueEvaluate(score);
-			$('#new-evaluation-form').hide();
+			AddScore();
+			AddEvaluateOptions();
 		}, this));
 	},
 });	

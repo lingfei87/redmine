@@ -21,13 +21,20 @@
 			<div id="IssueEvaluate<%=i%>">
 				<input type = 'hidden' id='IssueEvaluateScore<%=i%>' value = '<%=@issue.evaluates[i].score%>'>
 			</div>
+			
+			<div id="IssueEvaluateOption<%=i%>">
+				<%for issue_option_relation in @issue.evaluates[i].issue_option_relation %>
+					<input type="checkbox" name="SelectedEvaluateOptions[]" value=""  checked="true" disabled><%=EvaluateOptions.find(issue_option_relation.evaluate_option_id).name%>
+				<%end%>
+			</div>
 		<% end %>
 	<%end%>
 	
-	<div id = "NewEvaluateNotice">
-	</div>
+	<div id = "NewEvaluateNotice"></div>
 	
 	<div id="NewIssueEvaluate" ></div>
+	
+	<div id="NewIssueEvaluateOptions" ></div>
 	
 	<div class="contextual">
 		<!-- <%# if User.current.allowed_to?(:manage_issue_relations, @project) %> -->

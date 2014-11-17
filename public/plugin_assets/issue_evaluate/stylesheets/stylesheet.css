@@ -17,3 +17,6 @@
 
 #EvaluateOptionsNew {width:300px;}
 #EvaluateOptionsNew td{width:30%; text-align: center;}
+
+#NewIssueEvaluate{float:left;width:100%;position:relative;}
+#NewIssueEvaluateOptions{float:left;width:100%;position:relative;}
