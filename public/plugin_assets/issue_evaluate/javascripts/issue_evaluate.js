@@ -92,6 +92,7 @@ Issues.IssueChecklist = jQuery.klass({
 		this.button.click($.proxy(function(){
 			AddScore();
 			AddEvaluateOptions();
+			$('#contextual').hide();
 		}, this));
 	},
 });	
