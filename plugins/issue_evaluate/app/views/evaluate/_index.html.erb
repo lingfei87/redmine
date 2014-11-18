@@ -27,6 +27,42 @@
 					<input type="checkbox" name="SelectedEvaluateOptions[]" value=""  checked="true" disabled><%=EvaluateOptions.find(issue_option_relation.evaluate_option_id).name%>
 				<%end%>
 			</div>
+			
+			<div id="EditIssueEvaluate<%=i%>" style="float:right;position: relative;">
+				<%if @issue.evaluates[i].user_id == User.current.id %>
+				<!-- <%# if IssueEvaluates.where(issue_id:@issue.id, user_id: User.current.id) == nil %> -->
+		  			<%= link_to(image_tag('edit.png'),'#', :onclick => "EditIssueEvaluate(#{@issue.evaluates[i].id})") %>
+				<% end %>
+		    </div>
+		    
+		    <div id="EvaluateAdd<%=@issue.evaluates[i].id%>" style="display:none;">
+				<ul>
+					<%@evaluates = IssueEvaluates.find(@issue.evaluates[i].id)%>
+					<%= form_for @evaluates, {
+								 :remote => true,
+								 :url => evaluate_issue_new_path(),
+								 :html => {:id => 'edit-evaluation-form', :style => 'display: block;'},
+								   } do |f| %>
+		
+						<%=f.hidden_field :issue_id, :value => @issue.id%> 
+						<%=f.hidden_field :score%>   
+						          
+						<li><div id="evaluatelabel"><b>score:</b></div> <div id="star"></div></li>
+						<li>
+							<table>
+								<tr><td><b>option:</b></td>
+									<%@allOptions = EvaluateOptions.find(:all)
+									for all in @allOptions%> 
+										<td><input type="checkbox" name="EvaluateOptions[]" value="<%=all.id%>"><%=all.name%></td>
+									<%end%>
+								</tr>
+							</table>
+						</li>
+						<li>&nbsp;</li>
+						<li><%=f.submit 'OK', id:'Evaluate-Submit'%></li>
+					<% end %>
+				</ul>
+			</div>
 		<% end %>
 	<%end%>
 	
@@ -36,9 +72,13 @@
 	
 	<div id="NewIssueEvaluateOptions" ></div>
 	
+	<div id="EditIssueEvaluate" ></div>
+	
 	<div class="contextual" id="contextual">
 		<!-- <%# if User.current.allowed_to?(:manage_issue_relations, @project) %> -->
+		<!-- # <%# if IssueEvaluates.where(issue_id:@issue.id, user_id: User.current.id) == nil %> -->
 		  <%= toggle_link l(:button_add), 'new-evaluation-form', {:focus => ''} %>
+		<!-- # <%# end %> -->
 		<!-- <%# end %> -->
 	</div>
 

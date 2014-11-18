@@ -52,6 +52,7 @@ function AddScore(){
 	$('#NewEvaluateNotice').append(" ago"); 
 	
 	NewIssueEvaluate(score);
+
 	$('#new-evaluation-form').hide();
 }
 
@@ -74,6 +75,16 @@ function AddEvaluateOptions(){
 	$('#new-evaluation-form').hide();
 }
 
+function AddEditIssueEvaluateLink(){
+	
+	var image = document.createElement('img');
+	image.src = "/images/edit.png";
+	image.onclick = aaa();
+	image.style.cursor = "pointer";
+
+    $('#EditIssueEvaluate').append(image);
+}
+
 var Issues = Issues || {};
 
 Issues.IssueChecklist = jQuery.klass({
@@ -92,6 +103,7 @@ Issues.IssueChecklist = jQuery.klass({
 		this.button.click($.proxy(function(){
 			AddScore();
 			AddEvaluateOptions();
+			AddEditIssueEvaluateLink();
 			$('#contextual').hide();
 		}, this));
 	},
@@ -103,5 +115,15 @@ function observeIssueChecklistField(add_button) {
 
 function createIssueChecklist() {
 	issueChecklist.addChecklist(); 
+}
+
+function EditIssueEvaluate(id){
+	alert("333333333333333");
+	alert(id);
+	$('#EvaluateAdd'+id).show();
+}
+
+function aaa(){
+	alert("gggggggggg");
 }
 
