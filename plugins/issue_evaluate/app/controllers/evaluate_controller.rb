@@ -22,6 +22,10 @@ class EvaluateController < ApplicationController
     puts "2"
   end
 
+  def update
+    puts "update@@@@@@"
+  end
+
   def create
     puts "3"
     
@@ -56,6 +60,12 @@ puts @evaluate.issue.created_on
     
     
   end
+
+  def edit
+    puts "edit@@@@@@@@@@"
+  end
+  
+
 
   def delete
   end

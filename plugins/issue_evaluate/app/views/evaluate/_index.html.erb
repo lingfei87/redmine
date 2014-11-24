@@ -31,23 +31,25 @@
 			<div id="EditIssueEvaluate<%=i%>" style="float:right;position: relative;">
 				<%if @issue.evaluates[i].user_id == User.current.id %>
 				<!-- <%# if IssueEvaluates.where(issue_id:@issue.id, user_id: User.current.id) == nil %> -->
-		  			<%= link_to(image_tag('edit.png'),'#', :onclick => "EditIssueEvaluate(#{@issue.evaluates[i].id})") %>
+		  			<!-- <%#= link_to(image_tag('edit.png'),'#', :onclick => "EditIssueEvaluate(#{@issue.evaluates[i].id})") %> -->
 				<% end %>
 		    </div>
-		    
-		    <div id="EvaluateAdd<%=@issue.evaluates[i].id%>" style="display:none;">
+		    <!--
+		    <div id="EvaluateAdd<%=@issue.evaluates[i].id%>" class="EditIssueEvaluateForm" style="">
 				<ul>
 					<%@evaluates = IssueEvaluates.find(@issue.evaluates[i].id)%>
 					<%= form_for @evaluates, {
 								 :remote => true,
-								 :url => evaluate_issue_new_path(),
+								 :type => "POST",
+								 :url => edit_evaluate_issue_path(1),
+								 # :url => "/evaluate/edit",
 								 :html => {:id => 'edit-evaluation-form', :style => 'display: block;'},
 								   } do |f| %>
 		
 						<%=f.hidden_field :issue_id, :value => @issue.id%> 
 						<%=f.hidden_field :score%>   
 						          
-						<li><div id="evaluatelabel"><b>score:</b></div> <div id="star"></div></li>
+						<li><div id="evaluatelabel"><b>score:</b></div> <div id="stars"></div></li>
 						<li>
 							<table>
 								<tr><td><b>option:</b></td>
@@ -59,10 +61,11 @@
 							</table>
 						</li>
 						<li>&nbsp;</li>
-						<li><%=f.submit 'OK', id:'Evaluate-Submit'%></li>
+						<li><%=f.submit 'OK', id:''%></li>
 					<% end %>
 				</ul>
 			</div>
+			-->
 		<% end %>
 	<%end%>
 	
@@ -75,11 +78,11 @@
 	<div id="EditIssueEvaluate" ></div>
 	
 	<div class="contextual" id="contextual">
-		<!-- <%# if User.current.allowed_to?(:manage_issue_relations, @project) %> -->
-		<!-- # <%# if IssueEvaluates.where(issue_id:@issue.id, user_id: User.current.id) == nil %> -->
-		  <%= toggle_link l(:button_add), 'new-evaluation-form', {:focus => ''} %>
-		<!-- # <%# end %> -->
-		<!-- <%# end %> -->
+		<% for watcher in @issue.watchers
+			if IssueEvaluates.where(issue_id:@issue.id, user_id: User.current.id).size == 0 && watcher.user_id == User.current.id%>
+			  <%= toggle_link l(:button_add), 'new-evaluation-form', {:focus => ''} %>
+			<% end
+		end %>
 	</div>
 
 	<div id="EvaluateAdd">

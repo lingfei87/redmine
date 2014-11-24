@@ -1,4 +1,4 @@
-#EvaluateAdd {margin-top:15px;}
+#EvaluateAdd {margin-top:15px;background-color:#DDCC55;}
 #EvaluateAdd ul{list-style:none;}
 	 
 #EvaluateAdd ul li{float:left; width:800px;}
@@ -23,3 +23,15 @@
 #NewIssueEvaluateOptions{float:left;width:100%;position:relative;}
 
 #EditIssueEvaluate{float:right;position:relative;}
+
+.EditIssueEvaluateForm ul{list-style:none;}
+.EditIssueEvaluateForm ul li{float:left; width:100%;position:relative;}
+.EditIssueEvaluateForm{padding-bottom:90px;} 
+
+
+
+
+
+
+
+

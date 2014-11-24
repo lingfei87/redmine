@@ -103,7 +103,7 @@ Issues.IssueChecklist = jQuery.klass({
 		this.button.click($.proxy(function(){
 			AddScore();
 			AddEvaluateOptions();
-			AddEditIssueEvaluateLink();
+			// AddEditIssueEvaluateLink();
 			$('#contextual').hide();
 		}, this));
 	},
@@ -120,7 +120,8 @@ function createIssueChecklist() {
 function EditIssueEvaluate(id){
 	alert("333333333333333");
 	alert(id);
-	$('#EvaluateAdd'+id).show();
+
+	$('#EvaluateAdd' + id).show();
 }
 
 function aaa(){
