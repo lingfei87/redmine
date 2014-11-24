@@ -402,6 +402,12 @@ ActiveRecord::Schema.define(:version => 20131005100610) do
     t.string  "salt",       :null => false
   end
 
+  create_table "person_scores", :force => true do |t|
+    t.integer "assigned_user_id"
+    t.integer "score"
+    t.integer "issue_id"
+  end
+
   create_table "projects", :force => true do |t|
     t.string   "name",            :default => "",    :null => false
     t.text     "description"

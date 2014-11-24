@@ -10,6 +10,8 @@ post 'evaluate/:id/index', :to => 'evaluate#index'
 post 'evaluate/:id/testajax', :to => 'evaluate#testajax', :as => 'evaluate_issue_testajax'
 get 'evaluate/:id/testajax', :to => 'evaluate#testajax'
 
+get 'person_score', :to => 'person_score#index'
+
 # get 'evaluate_options', :to => 'evaluate_options#index'
 # match 'evaluate_options/new', :to => 'evaluate_options#new'
 # match 'evaluate_options/create', :to => 'evaluate_options#create', :via => [:get, :post] , :as =>'evaluate_options_path'

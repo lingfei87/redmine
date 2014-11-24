@@ -29,8 +29,25 @@
 .EditIssueEvaluateForm{padding-bottom:90px;} 
 
 
-
-
+#personscoreindex table {
+		overflow:hidden;
+		border:1px solid #d3d3d3;
+		background:#fefefe;
+		width:40%;
+		-moz-border-radius:5px; 
+		-webkit-border-radius:5px; 
+		border-radius:5px;
+		-moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+		-webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+	}
+	
+#personscoreindex table th, td {padding:10px 28px 10px; text-align:center; }
+	
+#personscoreindex table	th {padding-top:5px; text-shadow: 1px 1px 1px #fff; background:#e8eaeb;}
+	
+#personscoreindex table tr td {border-top:1px solid #e0e0e0; border-right:1px solid #e0e0e0;}
+	
+#personscoreindex table	tr.odd-row td {background:#f6f6f6;}
 
 
 
