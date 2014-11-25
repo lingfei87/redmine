@@ -9,18 +9,31 @@
 			<th>任务表现</th>
 			<th>相关任务链接</th>
 		</tr>
-		
-		<tr>
-			<td>
-				1111
-			</td>
-			<td>
-				2222222
-			</td>
-			<td>
-				33333
-			</td>
-	    </tr>
-		
+
+		<%if @users != nil
+			for user in @users%>		
+				<tr>
+					<td>
+						<%=user.name%>
+					</td>
+					<td>
+						<%score = []
+						issues = Issue.where(assigned_to_id:user.id)
+			
+						issues.each do |issue|
+							score += IssueEvaluates.where(issue_id:issue.id).collect{|evaluate| evaluate.score}
+						end	
+			
+						average = score.inject(0){|sum, item| sum += item.to_i}/score.size
+			
+						%>
+						<%=average.to_f%>
+					</td>
+					<td>
+						<%=link_to "相关任务", controller: "person_score", action: "show", id: user.id,project_id:@project_id%>
+					</td>
+			   </tr>
+			<%end%>
+		<%end%>			
 	</table>
 </div>

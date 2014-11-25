@@ -1,1 +1,25 @@
-<h2>PersonScoreController#show</h2>
+<h3><%= @user.name%> 的相关任务</h3>
+
+<%= stylesheet_link_tag "stylesheet.css" , :plugin => 'issue_evaluate'%>
+
+<div id="personscoreindex">
+	<table>
+		<tr>
+			<th>issue 名称</th>
+			<th>issue 链接</th>
+		</tr>
+
+		<%if @issues != nil
+			for issue in @issues%>		
+				<tr>
+					<td>
+						<%=issue.subject%>
+					</td>
+					<td>
+						<%=link_to "Link to #{issue.subject}", controller: "issues", action: "show", id: issue.id%>
+					</td>
+			   </tr>
+			<%end%>
+		<%end%>			
+	</table>
+</div>
