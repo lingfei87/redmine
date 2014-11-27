@@ -208,8 +208,7 @@ ActiveRecord::Schema.define(:version => 20131005100610) do
   add_index "enumerations", ["project_id"], :name => "index_enumerations_on_project_id"
 
   create_table "evaluate_options", :force => true do |t|
-    t.string  "name"
-    t.integer "issue_evaluate_id"
+    t.string "name"
   end
 
   create_table "groups_users", :id => false, :force => true do |t|
@@ -236,12 +235,11 @@ ActiveRecord::Schema.define(:version => 20131005100610) do
   end
 
   create_table "issue_evaluates", :force => true do |t|
-    t.integer  "issue_status_id"
-    t.string   "score",           :limit => 45
-    t.string   "advice",          :limit => 45
+    t.string   "score"
     t.integer  "issue_id"
     t.integer  "user_id"
     t.datetime "created_on"
+    t.datetime "updated_on"
   end
 
   create_table "issue_option_relations", :force => true do |t|

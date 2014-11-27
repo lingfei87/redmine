@@ -1,12 +1,16 @@
 class CreateIssueEvaluates < ActiveRecord::Migration
   def self.up
     create_table :issue_evaluates do |t|
-      t.integer :issue_status_id
       t.string :score
-      t.text :advice
-      t.references :issue, :null => false
-      t.references :user, :null => false
+      t.integer :issue_id
+      t.integer :user_id
       t.datetime :created_on
+      t.datetime :updated_on
     end
   end
+  
+  def self.down
+    drop_table :issue_evaluates
+  end
+
 end
