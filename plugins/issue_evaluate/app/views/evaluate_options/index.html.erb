@@ -1,13 +1,13 @@
-<h2>Listing Evaluate Options</h2>
+<h2><%=l(:label_evaluate_option)%></h2>
 
 <%= stylesheet_link_tag "stylesheet.css" , :plugin => 'issue_evaluate'%>
 
 <table id="EvaluateOptionsIndex">
   <tr>
-  	<th>Id</th>
-    <th>Name</th>
-    <th>Edit</th>
-    <th>Destroy</th>
+  	<th><%=l(:label_id)%></th>
+    <th><%=l(:label_Name)%></th>
+    <th><%=l(:label_Edit)%></th>
+    <th><%=l(:label_Destroy)%></th>
   </tr>
 
 <% if @evaluate_options != nil
@@ -15,12 +15,12 @@
 	  <tr>
 	  	<td><%= evaluate_option.id %></td>
 	    <td><%= evaluate_option.name %></td>
-	    <td><%= link_to 'Edit', edit_evaluate_option_path(:id =>evaluate_option.id ,:project_id => @project_id) %></td>
-	    <td><%= link_to 'Destroy', evaluate_option_path(:id =>evaluate_option.id ,:project_id => @project_id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+	    <td><%= link_to l(:label_Edit), edit_evaluate_option_path(:id =>evaluate_option.id ,:project_id => @project_id) %></td>
+	    <td><%= link_to l(:label_Destroy), evaluate_option_path(:id =>evaluate_option.id ,:project_id => @project_id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
 	  </tr>
 	<% end %>
 <% end %>
 </table>
 
 <br />
-<%= link_to 'New', new_evaluate_option_path(:project_id => @project_id) %>
+<%= link_to l(:label_new), new_evaluate_option_path(:project_id => @project_id) %>

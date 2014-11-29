@@ -1,0 +1,9 @@
+# English strings go here for Rails i18n
+en:
+  label_issue_evaluate: Evaluation
+  label_evaluate_option: Listing Evaluate Options
+  label_id:Id
+  label_Name:Name
+  label_Edit:Edit
+  label_Destroy:Destroy
+  label_new:New

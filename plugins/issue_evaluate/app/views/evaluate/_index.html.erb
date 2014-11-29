@@ -1,5 +1,5 @@
-<h3>Evaluation</h3>
-<%=l(:label_issue_evaluate)%>
+<h3><%=l(:label_issue_evaluate)%></h3>
+
 
 <%= javascript_include_tag "jquery.klass.js" , :plugin => 'issue_evaluate'%>
 <%= javascript_include_tag "jquery.raty.js" , :plugin => 'issue_evaluate'%>
@@ -58,9 +58,10 @@
 				<li><div id="evaluatelabel"><b>score:</b></div> <div id="star"></div></li>
 				<li>
 					<table>
-						<tr><td><b>option:</b></td>
+						<tr>
 							<%@allOptions = EvaluateOptions.find(:all)
 							for all in @allOptions%> 
+								<td><b>option:</b></td>
 								<td><input type="checkbox" name="EvaluateOptions[]" value="<%=all.id%>"><%=all.name%></td>
 							<%end%>
 						</tr>

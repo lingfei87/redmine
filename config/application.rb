@@ -50,6 +50,7 @@ config.log_level = :debug
     # config.i18n.default_locale = :de
 
     I18n.enforce_available_locales = false
+    # config.i18n.default_locale = "zh-CN"
 
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"

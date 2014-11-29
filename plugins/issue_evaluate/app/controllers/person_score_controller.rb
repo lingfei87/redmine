@@ -14,9 +14,11 @@ class PersonScoreController < ApplicationController
     end
     @Evaluated_user_id = @Evaluated_user_id.uniq
 
-    for user_id in @Evaluated_user_id
-      @user = User.find(user_id)
-      @users.push(@user)
+    if @Evaluated_user_id != []
+      for user_id in @Evaluated_user_id
+        @user = User.find(user_id)
+        @users.push(@user)
+      end
     end
   end
 

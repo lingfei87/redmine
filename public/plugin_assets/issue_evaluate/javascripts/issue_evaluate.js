@@ -92,15 +92,21 @@ Issues.IssueChecklist = jQuery.klass({
 	},
 
 	readChecklist: function(event) {
-		alert(this.button);
 		event.preventDefault();
 	},
 	
 	addChecklist: function() {
 		this.button.click($.proxy(function(){
-			AddScore();
-			AddEvaluateOptions();
-			$('#contextual').hide();
+			if($("input[name='EvaluateOptions[]']:checked").length > 0)
+			{
+				AddScore();
+				AddEvaluateOptions();
+				$('#contextual').hide();
+			}
+			else
+			{
+				alert("请至少选择一个评价选项！");
+			}
 		}, this));
 	},
 });	
