@@ -245,6 +245,7 @@ ActiveRecord::Schema.define(:version => 20131005100610) do
   create_table "issue_option_relations", :force => true do |t|
     t.integer "issue_evaluate_id"
     t.integer "evaluate_option_id"
+    t.integer "user_id"
   end
 
   create_table "issue_relations", :force => true do |t|

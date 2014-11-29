@@ -12,7 +12,7 @@
 	<input type = 'hidden' id='IssueEvaluateSize' value = '<%=@issue.evaluates.length%>'>
 	<input type = 'hidden' id='currentUser' value='<%=User.current.id%>,<%=User.current%>'>
 
-	<%if @issue.evaluates.length >0 
+	<%if @issue.evaluates.length >0 && @issue.evaluates != nil 
 		 for i in 0...@issue.evaluates.length do %>
 			<div id = "EvaluateNotice">
 				<%= authoring @issue.evaluates[i].created_on, @issue.evaluates[i].user, :label => :label_updated_time_by %>
@@ -36,11 +36,11 @@
 	<div id="EditIssueEvaluate"></div>
 	
 	<div class="contextual" id="contextual">
-		<% for watcher in @issue.watchers
-			if IssueEvaluates.where(issue_id:@issue.id, user_id: User.current.id).size == 0 && watcher.user_id == User.current.id%>
+		<!-- <%# for watcher in @issue.watchers -->
+			<!-- #if IssueEvaluates.where(issue_id:@issue.id, user_id: User.current.id).size == 0 && watcher.user_id == User.current.id%> -->
 			  <%= toggle_link l(:button_add), 'new-evaluation-form', {:focus => ''} %>
-			<% end
-		end %>
+			<!-- <%# end -->
+		<!-- #end %> -->
 	</div>
 
 	<div id="EvaluateAdd">
@@ -60,8 +60,10 @@
 					<table>
 						<tr>
 							<%@allOptions = EvaluateOptions.find(:all)
-							for all in @allOptions%> 
+							if @allOptions != nil%> 
 								<td><b>option:</b></td>
+							<%end%>
+							<%for all in @allOptions%> 
 								<td><input type="checkbox" name="EvaluateOptions[]" value="<%=all.id%>"><%=all.name%></td>
 							<%end%>
 						</tr>

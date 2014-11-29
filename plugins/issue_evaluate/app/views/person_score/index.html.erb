@@ -6,34 +6,58 @@
 	<table>
 		<tr>
 			<th>工作人员</th>
+			<th>评价选项</th>
 			<th>任务表现</th>
 			<th>相关任务链接</th>
 		</tr>
-
-		<%if @users != nil
-			for user in @users%>		
+		
+		<% @issue_options_id.each do |issue_options_id|
+			@issue_option_relations = IssueOptionRelation.where(evaluate_option_id:issue_options_id)
+			@user_ids =  @issue_option_relations.collect{|issue_option_relation| issue_option_relation.user_id}.uniq
+			
+			for i in 0..@user_ids.length%>
+			<tr>
+				<td>
+					<%=User.find(IssueEvaluates.find(relations.issue_evaluate_id).user_id).name%>
+				</td>
+				<td>
+					<%=EvaluateOption.find(issue_options_id).name%>
+				</td>
+				<td>
+					<%=EvaluateOption.find(relations.evaluate_option_id).name%>
+				</td>				
+				<td>
+					<%#=link_to "相关任务", controller: "person_score", action: "show", id: user.id,project_id:@project_id%>
+				</td>
+		   </tr>
+		
+		
+		
+		<%end%>
+		
+		
+		<!-- <%if# @users != nil
+			#for user in @users
+				#score = []
+				#issues = Issue.where(assigned_to_id:user.id)
+			
+				#issues.each do |issue|
+				#	score += IssueEvaluates.where(issue_id:issue.id).collect{|evaluate| evaluate.score}
+				#end	
+			
+				#average = score.inject(0){|sum, item| sum += item.to_i}/score.size%>		
 				<tr>
 					<td>
-						<%=user.name%>
+						<%#=user.name%>
 					</td>
 					<td>
-						<%score = []
-						issues = Issue.where(assigned_to_id:user.id)
-			
-						issues.each do |issue|
-							score += IssueEvaluates.where(issue_id:issue.id).collect{|evaluate| evaluate.score}
-						end	
-			
-						average = score.inject(0){|sum, item| sum += item.to_i}/score.size
-			
-						%>
-						<%=average.to_f%>
+						<%#=average.to_f%>
 					</td>
 					<td>
-						<%=link_to "相关任务", controller: "person_score", action: "show", id: user.id,project_id:@project_id%>
+						<%#=link_to "相关任务", controller: "person_score", action: "show", id: user.id,project_id:@project_id%>
 					</td>
 			   </tr>
-			<%end%>
-		<%end%>			
+			<%#end%>
+		<%#end%>	 -->		
 	</table>
 </div>

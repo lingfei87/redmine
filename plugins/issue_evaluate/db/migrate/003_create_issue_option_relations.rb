@@ -3,6 +3,7 @@ class CreateIssueOptionRelations < ActiveRecord::Migration
     create_table :issue_option_relations do |t|
       t.integer :issue_evaluate_id
       t.integer :evaluate_option_id
+      t.integer :user_id
     end
   end
   

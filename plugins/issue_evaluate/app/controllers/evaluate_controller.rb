@@ -18,16 +18,20 @@ class EvaluateController < ApplicationController
     @evaluate.score = score
     @evaluate.issue_id = issue_id
     @evaluate.user_id = User.current.id
-    
-    if @evaluate.save
-      for option in params[:EvaluateOptions]
-        @new_option = IssueOptionRelation.new
-        @new_option.issue_evaluate_id = @evaluate.id
-        @new_option.evaluate_option_id = option
-        @new_option.save
+
+    if params[:EvaluateOptions] != nil
+      if @evaluate.save
+        for option in params[:EvaluateOptions]
+          @new_option = IssueOptionRelation.new
+          @new_option.issue_evaluate_id = @evaluate.id
+          @new_option.evaluate_option_id = option
+          @new_option.user_id = User.current.id
+          @new_option.save
+        end
+        
       end
-      
     end
+    
   end
 
   def edit
